@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/journal")
+@RequestMapping("/_journal")
 public class JournalEntryController {
 
-    private Map<Long, JournalEntry> journalEntries = new HashMap<>();
+    private final Map<String, JournalEntry> journalEntries = new HashMap<>();
 
 
     @GetMapping
@@ -35,7 +35,7 @@ public class JournalEntryController {
     }
 
     @PutMapping("id/{requestedId}")
-    public JournalEntry modifyEntryById(@PathVariable Long requestedId, @RequestBody JournalEntry newEntry){
+    public JournalEntry modifyEntryById(@PathVariable String requestedId, @RequestBody JournalEntry newEntry){
         return journalEntries.put(requestedId, newEntry);
     }
 
